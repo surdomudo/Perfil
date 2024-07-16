@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         async function carregarPerfil(nameUsuario){
+
+            try{
+
+            const requisicaoPerfil = await fetch(`https://api.github.com/users/${nameUsuario}`)
+            const requisicaoRepositorio = await fetch(`https://api.github.com/${nameUsuario}/repos`)
+
+            if(requisicaoPerfil.ok && requisicaoRepositorio.ok){
+
+                const perfil1 = await requisicaoPerfil.json()  // avatar_url
+                //const perfil2 = await requisicaoRepositorio.json()
+                console.log(perfil1, perfil2)
+
+            }
+
+
+            }catch(e){
+                console.log(` Deu ruim: ${e}`)
+            }finally{
+
+            }
+        }
+        window.onload = function(){
+            //TODO url acasar perfiil do usuário  github 
+            // https://api.github.com/users/{nome do usuário anqui}
+
+            // TODO url acessar repositorios do usuario do github
+            //https://api.github.com/users/{nome de usuario anqui}/repos
+
+
+            const nomeDeUsuario = "surdomudo" 
+
+           
+
+            carregarPerfil(nomeDeUsuario)
+        }
+
+
+    </script>
+</body>
+</html>
